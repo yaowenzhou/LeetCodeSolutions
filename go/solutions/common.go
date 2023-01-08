@@ -48,18 +48,18 @@ func absIntCompare(a, b int) int {
 	return -1
 }
 
-// func maxAbs(a, b int) int {
-// 	// 先将a，b都转化成正数
-// 	newA := a
-// 	newB := b
-// 	if a < 0 {
-// 		newA = 0 - a
-// 	}
-// 	if b < 0 {
-// 		newB = 0 - b
-// 	}
-// 	if newA >= newB {
-// 		return a
-// 	}
-// 	return b
-// }
+func maxAbs(a, b int) int {
+	// 先将a，b都转化成正数
+	newA := a
+	newB := b
+	if a < 0 {
+		newA = 0 - a
+	}
+	if b < 0 {
+		newB = 0 - b
+	}
+	if newA >= newB {
+		return a
+	}
+	return b
+}
