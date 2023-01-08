@@ -37,24 +37,27 @@ func (pq *PriorityQueue) Pop() interface{} {
 	return x
 }
 
+// 优先队列实现
 func mergeKLists(lists []*ListNode) *ListNode {
 	if len(lists) == 0 {
 		return nil
 	}
 	pq := &PriorityQueue{}
-	heap.Init(&PriorityQueue{}) //初始化heap
-	for _, v := range lists {
+	heap.Init(&PriorityQueue{}) //初始化heap，小根堆(数值越小的越靠前)
+	for _, v := range lists {   // 将链表的头结点添加到优先队列
 		if v != nil {
 			heap.Push(pq, v)
 		}
 	}
 	head := &ListNode{}
 	tail := head
-	for pq.Len() > 0 {
+	for pq.Len() > 0 { // 只要优先队列中还有链表头结点，就取出节点
+		// 由于小根堆保证了优先队列总会弹出当前的最小值
+		// 因此我们拿到的永远是剩余链表中头结点最小的那个
 		list := heap.Pop(pq).(*ListNode)
-		tail.Next = list
-		tail = tail.Next
-		if list.Next != nil {
+		tail.Next = list      // 将取出的链表的头结点追加到待返回的链表中
+		tail = tail.Next      // 更新尾结点
+		if list.Next != nil { // 如果当前当前链表下一个节点还存在，则将其作为头节点继续放入优先队列
 			heap.Push(pq, list.Next)
 		}
 	}

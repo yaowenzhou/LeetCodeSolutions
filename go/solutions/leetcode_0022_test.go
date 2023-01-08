@@ -44,16 +44,16 @@ func generateParenthesis1(n int) (ret []string) {
 		return
 	}
 	var f func(string, int, int)
-	f = func(strIn string, i, j int) {
-		if i == 0 && j == 0 {
+	f = func(strIn string, i, j int) { // i和j分别是当前剩余的左括号和右括号的数量
+		if i == 0 && j == 0 { // 左右括号剩余数量都为0，说明字符串构建完毕，则追加字符串到结果
 			ret = append(ret, strIn)
 			return
 		}
-		if i > 0 {
+		if i > 0 { // 剩余左括号的数量大于0，可以追加左括号
 			f(strIn+"(", i-1, j)
 		}
-		if j > i {
-			f(strIn+")", i, j-1)
+		if j > i { // 只有剩余右括号的数量大于剩余左括号的数量，才能追加有括号
+			f(strIn+")", i, j-1) // 这是因为左括号总是先出现，左右括号剩余数量相同，说明应该先使用左括号
 		}
 	}
 	f("", n, n)

@@ -13,12 +13,13 @@ func swapPairs(head *ListNode) *ListNode {
 	if head.Next == nil {
 		return head
 	}
-	head = &ListNode{Next: head}
+	head = &ListNode{Next: head} // 在head前面再增加一个节点，最后返回该节点的next即可
 	preNode, curNode := head, head.Next
 	for curNode != nil {
 		if curNode.Next == nil {
 			return head.Next
 		}
+		// 下面的交换过程中，当前节点已经迭代了
 		// 交换节点i,j需要维护四个值
 		// n1(preNode), n2(curNode), n3(curNode.Next), n4(curNode.Next.Next)
 		n3 := curNode.Next               // 保存n3
