@@ -2,8 +2,9 @@
 package solutions
 
 import (
-	"fmt"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 var valueSymbols = []struct {
@@ -40,5 +41,5 @@ func intToRoman(num int) string {
 }
 
 func TestInt2Roman(t *testing.T) {
-	fmt.Println(intToRoman(1994))
+	assert.Equal(t, "MCMXCIV", intToRoman(1994))
 }

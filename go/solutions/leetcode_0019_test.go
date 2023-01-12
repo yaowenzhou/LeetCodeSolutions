@@ -43,20 +43,6 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 }
 
 func TestRemoveNthFromEnd(t *testing.T) {
-	head := &ListNode{
-		Val: 1,
-		Next: &ListNode{
-			Val: 2,
-			Next: &ListNode{
-				Val: 3,
-				Next: &ListNode{
-					Val: 4,
-					Next: &ListNode{
-						Val: 5,
-					},
-				},
-			},
-		},
-	}
+	head := &ListNode{1, &ListNode{2, &ListNode{3, &ListNode{4, &ListNode{Val: 5}}}}}
 	fmt.Println(removeNthFromEnd(head, 2))
 }

@@ -31,39 +31,19 @@ func MaxAbs[T constraints.Integer |
 	constraints.Float](x T, vs ...T) T {
 	max := x
 	maxAbs := max
-	if maxAbs < 0 {
-		maxAbs = 0 - maxAbs
+	if maxAbs > 0 { // 为了避免越界，全部转化成负数
+		maxAbs = -maxAbs
 	}
 	for _, v := range vs {
 		vAbs := v
-		if v < 0 {
-			vAbs = 0 - vAbs
+		if v > 0 {
+			vAbs = -vAbs
 		}
-		if maxAbs < vAbs {
+		if vAbs < maxAbs {
 			max = v
 		}
 	}
 	return max
-}
-
-// AbsCompare TODO
-func AbsCompare[T constraints.Integer |
-	constraints.Float](a, b T) int {
-	aAbs := a
-	bAbs := b
-	if a < 0 {
-		aAbs = 0 - a
-	}
-	if b < 0 {
-		bAbs = 0 - b
-	}
-	if aAbs > bAbs {
-		return 1
-	}
-	if aAbs == bAbs {
-		return 0
-	}
-	return -1
 }
 
 // MinAbs TODO
@@ -71,17 +51,37 @@ func MinAbs[T constraints.Integer |
 	constraints.Float](x T, vs ...T) T {
 	min := x
 	minAbs := min
-	if minAbs < 0 {
-		minAbs = 0 - minAbs
+	if minAbs > 0 { // 为了避免越界，全部转化成负数
+		minAbs = -minAbs
 	}
 	for _, v := range vs {
 		vAbs := v
-		if v < 0 {
-			vAbs = 0 - vAbs
+		if v > 0 {
+			vAbs = -vAbs
 		}
-		if minAbs > vAbs {
+		if vAbs > minAbs {
 			min = v
 		}
 	}
 	return min
+}
+
+// AbsCompare TODO
+func AbsCompare[T constraints.Integer |
+	constraints.Float](a, b T) int {
+	aAbs := a
+	bAbs := b
+	if a > 0 {
+		aAbs = -a
+	}
+	if b > 0 {
+		bAbs = -b
+	}
+	if aAbs < bAbs {
+		return 1
+	}
+	if aAbs == bAbs {
+		return 0
+	}
+	return -1
 }

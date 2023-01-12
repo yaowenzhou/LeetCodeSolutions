@@ -8,12 +8,12 @@ import (
 )
 
 func threeSum(nums []int) [][]int {
-	// 为了去重，首先肯定要排序
-	sort.Ints(nums)
 	length := len(nums)
 	if length < 3 { // 凑不齐三元素，直接返回
 		return nil
 	}
+	// 为了去重，首先肯定要排序
+	sort.Ints(nums)
 	if nums[0] > 0 || nums[length-1] < 0 { // 都是整数或者都是负数，直接返回
 		return nil
 	}

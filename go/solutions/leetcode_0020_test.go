@@ -12,7 +12,7 @@ func isValid(s string) bool {
 		return false
 	}
 	var charMap [128]byte = [128]byte{'(': ')', '[': ']', '{': '}'}
-	stack := make([]byte, length/2)
+	stack := make([]byte, length/2) // 括号入栈
 	stackLen := len(stack)
 	curLen := 0 // 记录左括号数量
 	for i := 0; i < length; i++ {

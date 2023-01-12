@@ -2,8 +2,9 @@
 package solutions
 
 import (
-	"fmt"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func twoSum(nums []int, target int) []int {
@@ -18,5 +19,5 @@ func twoSum(nums []int, target int) []int {
 }
 
 func TestTwoSum(t *testing.T) {
-	fmt.Println(twoSum([]int{2, 7, 11, 15}, 9))
+	assert.Equal(t, []int{0, 1}, twoSum([]int{2, 7, 11, 15}, 9))
 }
