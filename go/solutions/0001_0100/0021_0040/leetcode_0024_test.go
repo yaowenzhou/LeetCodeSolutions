@@ -3,17 +3,18 @@ package solutions
 
 import (
 	"fmt"
+	"leetcode_solutions_go/solutions/common"
 	"testing"
 )
 
-func swapPairs(head *ListNode) *ListNode {
+func swapPairs(head *common.ListNode) *common.ListNode {
 	if head == nil {
 		return nil
 	}
 	if head.Next == nil {
 		return head
 	}
-	head = &ListNode{Next: head} // 在head前面再增加一个节点，最后返回该节点的next即可
+	head = &common.ListNode{Next: head} // 在head前面再增加一个节点，最后返回该节点的next即可
 	preNode, curNode := head, head.Next
 	for curNode != nil {
 		if curNode.Next == nil {
@@ -33,6 +34,6 @@ func swapPairs(head *ListNode) *ListNode {
 }
 
 func TestSwapPair(t *testing.T) {
-	head := &ListNode{1, &ListNode{2, &ListNode{3, &ListNode{4, nil}}}}
+	head := &common.ListNode{1, &common.ListNode{2, &common.ListNode{3, &common.ListNode{4, nil}}}}
 	fmt.Println(swapPairs(head))
 }

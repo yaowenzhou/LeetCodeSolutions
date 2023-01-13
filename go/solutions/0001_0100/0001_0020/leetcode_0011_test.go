@@ -1,6 +1,7 @@
 package solutions
 
 import (
+	"leetcode_solutions_go/algorithm"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -10,7 +11,7 @@ func maxArea(height []int) int {
 	i, j := 0, len(height)-1
 	ans := 0
 	for i < j {
-		ans = max(ans, min(height[i], height[j])*(j-i))
+		ans = algorithm.Max(ans, algorithm.Min(height[i], height[j])*(j-i))
 		// 矮的索引向另一边靠
 		// 因为根据木桶原理，移动高柱的索引会导致底部的长减小，但是高却不可能增加
 		// 因此只能是移动矮柱的索引

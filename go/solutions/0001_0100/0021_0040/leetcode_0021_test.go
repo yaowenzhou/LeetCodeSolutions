@@ -3,6 +3,7 @@ package solutions
 
 import (
 	"fmt"
+	"leetcode_solutions_go/solutions/common"
 	"testing"
 )
 
@@ -13,7 +14,7 @@ import (
  *     Next *ListNode
  * }
  */
-func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+func mergeTwoLists(list1 *common.ListNode, list2 *common.ListNode) *common.ListNode {
 	// 针对空链表进行控制，如果遇到直接返回另一个链表头结点
 	if list1 == nil { // list为空直接返回list2即可
 		return list2

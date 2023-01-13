@@ -3,6 +3,7 @@ package solutions
 
 import (
 	"fmt"
+	"leetcode_solutions_go/algorithm"
 	"math"
 	"testing"
 )
@@ -68,7 +69,7 @@ func manacher(s string) string {
 			// minLeft .... mirrorI .... center .... i .... maxRight
 			// 可以保证 i-min(mirrorI的臂长, maxRight-i) .... i .... i+min(mirrorI的臂长, maxRight-i)这一段必定是回文的
 			mirrorI := center*2 - i
-			minArmLen := min(armLenArr[mirrorI], maxRight-i)
+			minArmLen := algorithm.Min(armLenArr[mirrorI], maxRight-i)
 			curArmLen = getStepLength(runesExpend, i-minArmLen, i+minArmLen)
 		}
 		armLenArr[i] = curArmLen    // 记录下当前位置的臂长

@@ -4,6 +4,7 @@ package solutions
 import (
 	"container/heap"
 	"fmt"
+	"leetcode_solutions_go/solutions/common"
 	"testing"
 )
 
@@ -11,11 +12,11 @@ import (
  * Definition for singly-linked list.
  * type ListNode struct {
  *     Val int
- *     Next *ListNode
+ *     Next *common.ListNode
  * }
  */
 
-type PriorityQueue []*ListNode
+type PriorityQueue []*common.ListNode
 
 func (pq PriorityQueue) Len() int {
 	return len(pq)
@@ -27,7 +28,7 @@ func (pq PriorityQueue) Swap(i, j int) {
 	pq[i], pq[j] = pq[j], pq[i]
 }
 func (pq *PriorityQueue) Push(x interface{}) {
-	*pq = append(*pq, x.(*ListNode))
+	*pq = append(*pq, x.(*common.ListNode))
 }
 func (pq *PriorityQueue) Pop() interface{} {
 	old := *pq
@@ -38,7 +39,7 @@ func (pq *PriorityQueue) Pop() interface{} {
 }
 
 // 优先队列实现
-func mergeKLists(lists []*ListNode) *ListNode {
+func mergeKLists(lists []*common.ListNode) *common.ListNode {
 	if len(lists) == 0 {
 		return nil
 	}
@@ -49,12 +50,12 @@ func mergeKLists(lists []*ListNode) *ListNode {
 			heap.Push(pq, v)
 		}
 	}
-	head := &ListNode{}
+	head := &common.ListNode{}
 	tail := head
 	for pq.Len() > 0 { // 只要优先队列中还有链表头结点，就取出节点
 		// 由于小根堆保证了优先队列总会弹出当前的最小值
 		// 因此我们拿到的永远是剩余链表中头结点最小的那个
-		list := heap.Pop(pq).(*ListNode)
+		list := heap.Pop(pq).(*common.ListNode)
 		tail.Next = list      // 将取出的链表的头结点追加到待返回的链表中
 		tail = tail.Next      // 更新尾结点
 		if list.Next != nil { // 如果当前当前链表下一个节点还存在，则将其作为头节点继续放入优先队列
@@ -65,7 +66,7 @@ func mergeKLists(lists []*ListNode) *ListNode {
 }
 
 // 多重循环实现
-func mergeKLists2Cycle(lists []*ListNode) *ListNode {
+func mergeKLists2Cycle(lists []*common.ListNode) *common.ListNode {
 	if len(lists) == 0 {
 		return nil
 	}
@@ -91,8 +92,8 @@ func mergeKLists2Cycle(lists []*ListNode) *ListNode {
 	}
 	tail := head // 定义尾结点
 	for {
-		var minNode *ListNode = nil // 保存当前最小节点
-		var minNodeIndex int = -1   // 保存当前最小节点所在链表在切片中的索引
+		var minNode *common.ListNode = nil // 保存当前最小节点
+		var minNodeIndex int = -1          // 保存当前最小节点所在链表在切片中的索引
 		for i := 0; i < listsLength; i++ {
 			if lists[i] == nil {
 				continue
@@ -115,10 +116,10 @@ func mergeKLists2Cycle(lists []*ListNode) *ListNode {
 }
 
 func TestMergeKLists(t *testing.T) {
-	var lists []*ListNode
-	lists = append(lists, &ListNode{1, &ListNode{4, &ListNode{5, nil}}})
-	lists = append(lists, &ListNode{1, &ListNode{3, &ListNode{4, nil}}})
-	lists = append(lists, &ListNode{2, &ListNode{6, nil}})
+	var lists []*common.ListNode
+	lists = append(lists, &common.ListNode{1, &common.ListNode{4, &common.ListNode{5, nil}}})
+	lists = append(lists, &common.ListNode{1, &common.ListNode{3, &common.ListNode{4, nil}}})
+	lists = append(lists, &common.ListNode{2, &common.ListNode{6, nil}})
 	fmt.Println(mergeKLists(lists))
 	fmt.Println(mergeKLists2Cycle(lists))
 }

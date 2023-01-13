@@ -3,14 +3,15 @@ package solutions
 
 import (
 	"fmt"
+	"leetcode_solutions_go/solutions/common"
 	"testing"
 )
 
-func reverseKGroup(head *ListNode, k int) *ListNode {
+func reverseKGroup(head *common.ListNode, k int) *common.ListNode {
 	curNode := head
-	head = &ListNode{Next: head}          // 在head前面再增加一个节点，最后返回该节点的next即可
-	preNode := head                       // 保存逆转区间的前一个节点
-	reverseArr := make([]*ListNode, 0, k) // 保存待逆转的节点(当做栈使用)
+	head = &common.ListNode{Next: head}          // 在head前面再增加一个节点，最后返回该节点的next即可
+	preNode := head                              // 保存逆转区间的前一个节点
+	reverseArr := make([]*common.ListNode, 0, k) // 保存待逆转的节点(当做栈使用)
 	for curNode != nil {
 		reverseArr = append(reverseArr, curNode) // 待逆转的节点入栈，容量为k
 		curNode = curNode.Next
@@ -31,6 +32,6 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 }
 
 func TestReverseKGroup(t *testing.T) {
-	head := &ListNode{1, &ListNode{2, &ListNode{3, &ListNode{4, &ListNode{5, nil}}}}}
+	head := &common.ListNode{1, &common.ListNode{2, &common.ListNode{3, &common.ListNode{4, &common.ListNode{5, nil}}}}}
 	fmt.Println(reverseKGroup(head, 2))
 }

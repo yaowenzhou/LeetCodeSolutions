@@ -3,6 +3,7 @@ package solutions
 
 import (
 	"fmt"
+	"leetcode_solutions_go/algorithm"
 	"testing"
 )
 
@@ -15,7 +16,7 @@ func longestValidParentheses(s string) int {
 			right++
 		}
 		if left == right {
-			maxLength = max(maxLength, 2*right)
+			maxLength = algorithm.Max(maxLength, 2*right)
 		} else if right > left {
 			left, right = 0, 0
 		}
@@ -28,7 +29,7 @@ func longestValidParentheses(s string) int {
 			right++
 		}
 		if left == right {
-			maxLength = max(maxLength, 2*left)
+			maxLength = algorithm.Max(maxLength, 2*left)
 		} else if left > right {
 			left, right = 0, 0
 		}

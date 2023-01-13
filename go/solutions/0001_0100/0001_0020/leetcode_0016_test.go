@@ -3,6 +3,7 @@ package solutions
 
 import (
 	"fmt"
+	"leetcode_solutions_go/algorithm"
 	"sort"
 	"testing"
 )
@@ -31,7 +32,7 @@ func threeSumClosest(nums []int, target int) (ret int) {
 			// 直接比较 |min-target| < |ret-target| 即可
 			min := nums[i] + nums[first] + nums[first+1]
 			if min > target {
-				if absIntCompare(min-target, ret-target) < 0 {
+				if algorithm.AbsCompare(target, ret-target) < 0 {
 					ret = min
 				}
 				break
@@ -42,7 +43,7 @@ func threeSumClosest(nums []int, target int) (ret int) {
 			// 所以如果|max - target| > |ret-target|，则不需要再进行内循环了
 			max := nums[i] + nums[last-1] + nums[last]
 			if max < target {
-				if absIntCompare(max-target, ret-target) < 0 {
+				if algorithm.AbsCompare(max-target, ret-target) < 0 {
 					ret = max
 				}
 				break
@@ -51,7 +52,7 @@ func threeSumClosest(nums []int, target int) (ret int) {
 			if sum == target {
 				return sum // 再没有比它自己更接近它的了
 			}
-			if absIntCompare(sum-target, target-ret) < 0 {
+			if algorithm.AbsCompare(sum-target, target-ret) < 0 {
 				ret = sum
 			}
 			if sum < target {

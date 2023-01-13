@@ -3,6 +3,7 @@ package solutions
 
 import (
 	"fmt"
+	"leetcode_solutions_go/algorithm"
 	"math"
 	"testing"
 )
@@ -36,9 +37,9 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 			nums2SpliteR = nums2[j]
 		}
 		if nums1SpliteL <= nums2SpliteR {
-			median1 = max(nums1SpliteL, nums2SpliteL) // 取得左边最大值
-			median2 = min(nums1SplihtR, nums2SpliteR) // 取得右边最小值
-			left = i + 1                              // 分割线右移
+			median1 = algorithm.Max(nums1SpliteL, nums2SpliteL) // 取得左边最大值
+			median2 = algorithm.Max(nums1SplihtR, nums2SpliteR) // 取得右边最小值
+			left = i + 1                                        // 分割线右移
 		} else {
 			right = i - 1 // 分割线左移
 		}
