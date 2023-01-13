@@ -117,9 +117,36 @@ func mergeKLists2Cycle(lists []*common.ListNode) *common.ListNode {
 
 func TestMergeKLists(t *testing.T) {
 	var lists []*common.ListNode
-	lists = append(lists, &common.ListNode{1, &common.ListNode{4, &common.ListNode{5, nil}}})
-	lists = append(lists, &common.ListNode{1, &common.ListNode{3, &common.ListNode{4, nil}}})
-	lists = append(lists, &common.ListNode{2, &common.ListNode{6, nil}})
+	lists = append(lists,
+		&common.ListNode{
+			Val: 1,
+			Next: &common.ListNode{
+				Val: 4,
+				Next: &common.ListNode{
+					Val:  5,
+					Next: nil,
+				},
+			},
+		})
+	lists = append(lists,
+		&common.ListNode{
+			Val: 1,
+			Next: &common.ListNode{
+				Val: 3,
+				Next: &common.ListNode{
+					Val:  4,
+					Next: nil,
+				},
+			},
+		})
+	lists = append(lists,
+		&common.ListNode{
+			Val: 2,
+			Next: &common.ListNode{
+				Val:  6,
+				Next: nil,
+			},
+		})
 	fmt.Println(mergeKLists(lists))
 	fmt.Println(mergeKLists2Cycle(lists))
 }

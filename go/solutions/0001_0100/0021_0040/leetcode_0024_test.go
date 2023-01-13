@@ -34,6 +34,18 @@ func swapPairs(head *common.ListNode) *common.ListNode {
 }
 
 func TestSwapPair(t *testing.T) {
-	head := &common.ListNode{1, &common.ListNode{2, &common.ListNode{3, &common.ListNode{4, nil}}}}
+	head := &common.ListNode{
+		Val: 1,
+		Next: &common.ListNode{
+			Val: 2,
+			Next: &common.ListNode{
+				Val: 3,
+				Next: &common.ListNode{
+					Val:  4,
+					Next: nil,
+				},
+			},
+		},
+	}
 	fmt.Println(swapPairs(head))
 }

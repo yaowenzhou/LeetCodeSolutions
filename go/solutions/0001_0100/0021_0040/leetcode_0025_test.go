@@ -32,6 +32,21 @@ func reverseKGroup(head *common.ListNode, k int) *common.ListNode {
 }
 
 func TestReverseKGroup(t *testing.T) {
-	head := &common.ListNode{1, &common.ListNode{2, &common.ListNode{3, &common.ListNode{4, &common.ListNode{5, nil}}}}}
+	head := &common.ListNode{
+		Val: 1,
+		Next: &common.ListNode{
+			Val: 2,
+			Next: &common.ListNode{
+				Val: 3,
+				Next: &common.ListNode{
+					Val: 4,
+					Next: &common.ListNode{
+						Val:  5,
+						Next: nil,
+					},
+				},
+			},
+		},
+	}
 	fmt.Println(reverseKGroup(head, 2))
 }
