@@ -2,8 +2,9 @@
 package solutions
 
 import (
-	"fmt"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func isValid(s string) bool {
@@ -34,7 +35,6 @@ func isValid(s string) bool {
 	}
 	return curLen <= 0
 }
-
 func TestIsValid(t *testing.T) {
-	fmt.Println(isValid("()[]{}"))
+	assert.Equal(t, true, isValid("()[]{}"))
 }
