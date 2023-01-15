@@ -2,6 +2,7 @@
 package solutions
 
 import (
+	"leetcode_solutions_go/algorithm"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -16,19 +17,19 @@ import (
 // 我们可以通过枚举 x 的倍数 y，判断 y 是否在数组 nums 中
 // 如果 y 在数组 nums 中，则计算 y 的最大公约数 g，如果出现 g=x，则 x 是数组 nums 的子序列的最大公约数。
 func countDifferentSubsequenceGCDs(nums []int) (ans int) {
-	mx := 0
+	max := 0
 	for _, x := range nums {
-		mx = max(mx, x)
+		max = algorithm.Max(max, x)
 	}
-	vis := make([]bool, mx+1)
+	vis := make([]bool, max+1)
 	for _, x := range nums {
 		vis[x] = true
 	}
-	for x := 1; x <= mx; x++ {
+	for x := 1; x <= max; x++ {
 		g := 0
-		for y := x; y <= mx; y += x {
+		for y := x; y <= max; y += x {
 			if vis[y] {
-				g = gcd(g, y)
+				g = algorithm.Gcd(g, y)
 				if g == x {
 					ans++
 					break
@@ -37,20 +38,6 @@ func countDifferentSubsequenceGCDs(nums []int) (ans int) {
 		}
 	}
 	return
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
-func gcd(i, j int) int {
-	for i != 0 {
-		i, j = j%i, i
-	}
-	return j
 }
 
 // 接下来写一个自己的理解
@@ -76,7 +63,7 @@ func countDifferentSubsequenceGCDs1(nums []int) (ans int) {
 		g := 0
 		for j := i; j <= max; j += i { // 枚举i的倍数
 			if _, ok := numMap[j]; ok {
-				g = gcd(g, j)
+				g = algorithm.Gcd(g, j)
 				if g == i {
 					ans++
 					break

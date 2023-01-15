@@ -85,3 +85,11 @@ func AbsCompare[T constraints.Integer |
 	}
 	return -1
 }
+
+// Gcb TODO
+func Gcd[T constraints.Integer](i, j T) T {
+	for i != 0 {
+		i, j = j%i, i
+	}
+	return j
+}
