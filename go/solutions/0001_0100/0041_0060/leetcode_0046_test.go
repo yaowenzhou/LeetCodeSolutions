@@ -11,25 +11,23 @@ func permute(nums []int) (answers [][]int) {
 	if length == 0 {
 		return
 	}
-	var insertNum func([]int, int)
-	insertNum = func(answer []int, curIndex int) {
+	var insertNum func(int)
+	insertNum = func(curIndex int) {
 		// 最后一个位置只有一个选择，可以直接append到返回值
 		if curIndex == length-1 {
-			answers = append(answers, answer)
+			answers = append(answers, append([]int(nil), nums...))
+			return
 		}
 		for i := curIndex; i < length; i++ {
-			answerNew := make([]int, 0, length)
-			for j := 0; j < length; j++ {
-				answerNew = append(answerNew, answer[j])
-			}
 			// 保持[0,curIndex-1]不变
 			// 然后将i和curIndex交换，填充了curIndex
 			// curIndex之后的数尚未被选择
-			answerNew[curIndex], answerNew[i] = answerNew[i], answerNew[curIndex]
-			insertNum(answerNew, curIndex+1)
+			nums[curIndex], nums[i] = nums[i], nums[curIndex]
+			insertNum(curIndex + 1)
+			nums[curIndex], nums[i] = nums[i], nums[curIndex]
 		}
 	}
-	insertNum(nums, 0)
+	insertNum(0)
 	return
 }
 
