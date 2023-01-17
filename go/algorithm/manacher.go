@@ -1,3 +1,4 @@
+// 计算某个字符串的最长回文子串的算法
 package algorithm
 
 func getStepLength(runesExpend []rune, left, right int) int {
@@ -24,7 +25,7 @@ func Manacher(s string) string {
 	center, maxRight := -1, -1
 	for i := 0; i < len(runesExpend); i++ {
 		var curArmLen int
-		if i > maxRight { // 中心扩散
+		if i > maxRight { // 中心扩散，当i在maxright的右边，乖乖中心扩散
 			curArmLen = getStepLength(runesExpend, i, i)
 		} else {
 			// i <= maxRight， 则根据center的回文特性，
