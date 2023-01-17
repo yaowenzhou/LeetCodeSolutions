@@ -3,6 +3,7 @@
 package solutions
 
 import (
+	"leetcode_solutions_go/algorithm"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -24,20 +25,13 @@ func jump(nums []int) int {
 	maxPosition := 0
 	steps := 0
 	for i := 0; i < length-1; i++ {
-		maxPosition = max(maxPosition, i+nums[i])
+		maxPosition = algorithm.Max(maxPosition, i+nums[i])
 		if i == end {
 			end = maxPosition
 			steps++
 		}
 	}
 	return steps
-}
-
-func max(i, j int) int {
-	if i > j {
-		return i
-	}
-	return j
 }
 
 func TestJump(t *testing.T) {
