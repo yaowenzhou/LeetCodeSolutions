@@ -3,6 +3,7 @@ module leetcode_solutions_go
 go 1.19
 
 require (
+	github.com/emirpasic/gods v1.18.1
 	github.com/sakeven/RbTree v0.0.0-20220710124251-94e35f9fed6c
 	github.com/stretchr/testify v1.8.1
 	golang.org/x/exp v0.0.0-20230111222715-75897c7a292a

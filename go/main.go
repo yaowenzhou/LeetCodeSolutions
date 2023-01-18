@@ -1,7 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
-	fmt.Println("main")
+	sum := 1
+	for i := 0; i < 5; i++ {
+		sum *= 10
+	}
+	fmt.Println(sum * (sum - 2))
+	fmt.Println(math.MaxInt32)
 }
